@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>ToDoList</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Контейнер для кнопок -->
+        <div class="action_btns">
+            <button class="btn-completed">Выполненные</button>
+            <button class="btn-creating">Создать</button>
+        </div>
+        <!-- Главный контейнер, содержит поиск, заголовок и задачи -->
+        <div class="wiget__window">
+            <!-- Навигация: поиск, заголовок -->
+            <nav class="navigation_panel">
+                <input type="text" class="input_for_search" placeholder="Поиск...">
+                <div class="title">
+                    <h1>Задачи</h1>
+                </div>
+            </nav>
+            <!-- Окно с задачами -->
+            <div class="tasks__window">
+                <div class="tasks__wraper">
+                    <div class="tasks__container">
+                        <!-- <div class="task__box">
+                            <div class="box__information">
+                                <div class="box__information__tytle">
+                                    <p></p>
+                                </div>
+                                <div class="box__information__description">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="options">
+                                <input type="button" class="options__btn">
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="creating__window">
+                <input type="text" class="input_tytle_of_task" placeholder="Название задачи">
+                <textarea name="task_description" id="task_description" placeholder="Описание" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
