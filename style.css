@@ -172,6 +172,45 @@ h1 {
     border: none;
 }
 
+.option__menu {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #D08805;
+    border-radius: 10px;
+}
+
+#btn-option__menu__done {
+    font-family: var(--font);
+    font-weight: 600;
+    color: #092b2e;
+    background-color: #D08805;
+    border: none;
+    box-shadow: var(--shadow);
+}
+#btn-option__menu__edit {
+    font-family: var(--font);
+    font-weight: 600;
+    color: #092b2e;
+    background-color: #D08805;
+    border: none;
+    box-shadow: var(--shadow);
+}
+#btn-option__menu__delete {
+    font-family: var(--font);
+    font-weight: 600;
+    color: #092b2e;
+    background-color: #D08805;
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+
+
 /* --------------------------------------------------------- */
 
 .creating__window {

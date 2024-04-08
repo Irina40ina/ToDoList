@@ -1,4 +1,3 @@
-
 // ====================================  DATA  ====================================
 const creatingWindow = document.querySelector('.creating__window');
 const btnOpenCreating = document.getElementById('btn-creating');
@@ -13,6 +12,8 @@ let taskArray = [];
 
 
 // ====================================  METHODS  ====================================
+
+
 function creatingTaskView(id, title, description) {
     const taskBox = document.createElement('div');
     taskBox.id = id;
@@ -40,6 +41,10 @@ function creatingTaskView(id, title, description) {
     taskBox.appendChild(options);
     options.appendChild(optionsBtn);
     tasksContainer.appendChild(taskBox);
+
+    options.addEventListener('click', () => {
+        setPositionOptionMenu();
+    })
 }
 function creatingTaskServer(id, title, description) {
     let taskObject = {
