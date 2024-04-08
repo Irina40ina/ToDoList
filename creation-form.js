@@ -6,13 +6,14 @@ const inputCreating = document.querySelector('.input_tytle_of_task');
 const textareaTask = document.getElementById('task_description');
 const btnCreatingSave = document.querySelector('.creating__window_save');
 const tasksContainer = document.querySelector('.tasks__container');
+const btnCompleted = document.querySelector('.btn-completed');
 let titleTask = '';
 let descriptionTask = '';
 let taskArray = [];
+let mode = 'process'; // completed
 
 
 // ====================================  METHODS  ====================================
-
 
 function creatingTaskView(id, title, description) {
     const taskBox = document.createElement('div');
@@ -41,11 +42,8 @@ function creatingTaskView(id, title, description) {
     taskBox.appendChild(options);
     options.appendChild(optionsBtn);
     tasksContainer.appendChild(taskBox);
-
-    options.addEventListener('click', () => {
-        setPositionOptionMenu();
-    })
 }
+
 function creatingTaskServer(id, title, description) {
     let taskObject = {
         id: id,
@@ -64,14 +62,60 @@ function mountedTasks() {
         if (Array.isArray(taskArrayDB)) {
             taskArray = taskArrayDB;
             taskArrayDB.forEach((element) => {
-                creatingTaskView(element.id, element.title, element.description);
+                if (element.isComplete === false) {
+                    creatingTaskView(element.id, element.title, element.description);
+                }
+                let currentTask = document.getElementById(element.id + '');
+                if (currentTask) {
+                    let btnOptions = currentTask.childNodes[1].childNodes[0];
+                    btnOptions.addEventListener('click', () => {
+                        setPositionOptionMenu();
+                    });
+                }
             });
         }
     } else {
         localStorage.setItem('tasks', JSON.stringify([]));
         return;
     }
+}
 
+function removingTaskView(mode) {
+    taskArray.forEach((element) => {
+        if (mode === 'completed' && element.isComplete === false) {
+            let currentTask = document.getElementById(`${element.id}`);
+            if(currentTask){
+                currentTask.remove();
+            }
+        } else if(mode === 'process' && element.isComplete === true) {
+            let currentTask = document.getElementById(`${element.id}`);
+            if(currentTask){
+                currentTask.remove();
+            }
+        }
+    })
+}
+
+function mountedTasksByMode(mode) {
+    taskArray.forEach((element  ) => {
+        if(mode === 'completed' && element.isComplete === true) {
+            creatingTaskView(element.id, element.title, element.description);
+        } 
+        else if(mode === 'process' && element.isComplete === false) {
+            creatingTaskView(element.id, element.title, element.description);
+        }
+    })
+}
+
+function changeModeViewTask() {
+    if(mode === 'process') {
+        mode = 'completed';
+    }
+    else if(mode === 'completed') {
+        mode = 'process';
+    }
+    removingTaskView(mode);
+    mountedTasksByMode(mode);
 }
 
 function creatingTask() {
@@ -98,6 +142,9 @@ textareaTask.addEventListener('input', (event) => {
 btnCreatingSave.addEventListener('click', (event) => {
     event.preventDefault();
     creatingTask();
+})
+btnCompleted.addEventListener('click', () => {
+    changeModeViewTask();
 })
 
 // Монтируем список задач

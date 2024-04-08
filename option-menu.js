@@ -12,4 +12,4 @@ function setPositionOptionMenu() {
 document.addEventListener("mousemove", (event) => {
     screenX = event.pageX;
     screenY = event.pageY;
-  });
+});
