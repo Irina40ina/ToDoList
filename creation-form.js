@@ -34,6 +34,9 @@ function creatingTaskView(id, title, description) {
     const options = document.createElement('div');
     options.classList.add('options');
     const optionsBtn = document.createElement('button');
+    optionsBtn.addEventListener('click', () => {
+        setPositionOptionMenu(id);
+    });
     optionsBtn.classList.add('options__btn');
 
     taskBox.appendChild(boxInformation);
@@ -42,6 +45,7 @@ function creatingTaskView(id, title, description) {
     taskBox.appendChild(options);
     options.appendChild(optionsBtn);
     tasksContainer.appendChild(taskBox);
+    return taskBox;
 }
 
 function creatingTaskServer(id, title, description) {
@@ -65,13 +69,6 @@ function mountedTasks() {
                 if (element.isComplete === false) {
                     creatingTaskView(element.id, element.title, element.description);
                 }
-                let currentTask = document.getElementById(element.id + '');
-                if (currentTask) {
-                    let btnOptions = currentTask.childNodes[1].childNodes[0];
-                    btnOptions.addEventListener('click', () => {
-                        setPositionOptionMenu();
-                    });
-                }
             });
         }
     } else {
@@ -84,34 +81,39 @@ function removingTaskView(mode) {
     taskArray.forEach((element) => {
         if (mode === 'completed' && element.isComplete === false) {
             let currentTask = document.getElementById(`${element.id}`);
-            if(currentTask){
+            if (currentTask) {
                 currentTask.remove();
             }
-        } else if(mode === 'process' && element.isComplete === true) {
+        } else if (mode === 'process' && element.isComplete === true) {
             let currentTask = document.getElementById(`${element.id}`);
-            if(currentTask){
+            if (currentTask) {
                 currentTask.remove();
             }
         }
     })
 }
 
+
 function mountedTasksByMode(mode) {
-    taskArray.forEach((element  ) => {
-        if(mode === 'completed' && element.isComplete === true) {
-            creatingTaskView(element.id, element.title, element.description);
-        } 
-        else if(mode === 'process' && element.isComplete === false) {
+    taskArray.forEach((element) => {
+        if (mode === 'completed' && element.isComplete === true) {
             creatingTaskView(element.id, element.title, element.description);
         }
-    })
+        else if (mode === 'process' && element.isComplete === false) {
+            creatingTaskView(element.id, element.title, element.description);
+        }
+    });
+}
+
+function updateTaskArray(updatedArray) {
+    taskArray = updatedArray;
 }
 
 function changeModeViewTask() {
-    if(mode === 'process') {
+    if (mode === 'process') {
         mode = 'completed';
     }
-    else if(mode === 'completed') {
+    else if (mode === 'completed') {
         mode = 'process';
     }
     removingTaskView(mode);
