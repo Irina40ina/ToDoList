@@ -14,6 +14,19 @@
             <button class="btn-completed">Выполненные</button>
             <button id="btn-creating">Создать</button>
         </div>
+
+        <div class="delete_form_container">
+            <div class="delete_form">
+                <div class="delete_form_header">
+                    <h2 class="delete_form_title">Вы действительно хотите удалить задачу?</h2>
+                </div>
+                <div class="delete_form_actions">
+                    <button id="delete_confirm">Да</button>
+                    <button id="delete_cancel">Нет</button>
+                </div>
+            </div>
+        </div> 
+
         <!-- Главный контейнер, содержит поиск, заголовок и задачи -->
         <div class="wiget__window">
             <!-- Навигация: поиск, заголовок -->
@@ -58,6 +71,7 @@
     <script src="./option-menu.js"></script>
     <script src="./creation-form.js"></script>
     <script src="./edit-form.js"></script>
+    <script src="./delete-form.js"></script>
     <script src="./app.js"></script>
 </body>
 </html>

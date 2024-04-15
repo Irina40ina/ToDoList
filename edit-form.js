@@ -10,7 +10,6 @@ function taskBeingEdited() {
     })
 }
 
-
 function editTask(id){
     let taskArray = JSON.parse(localStorage.getItem('tasks'));
     let selectedTask = taskArray.find(element => element.id == id);
@@ -18,13 +17,10 @@ function editTask(id){
         selectedTask.title = titleTask;
     }
     if(descriptionTask !== ''){
-        selectedTask.description =  descriptionTask;
+        selectedTask.description = descriptionTask;
     }
     localStorage.setItem('tasks', JSON.stringify(taskArray));
 }
-
-
-
 
 const btnOptionMenuEdit = document.getElementById('btn-option__menu__edit');
 btnOptionMenuEdit.addEventListener('click', (event) => {

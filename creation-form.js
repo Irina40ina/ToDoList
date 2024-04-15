@@ -149,16 +149,13 @@ btnCreatingSave.addEventListener('click', (event) => {
         inputCreating.value = '';
         textareaTask.value = '';
         creatingWindow.style.display = 'none';
-    } else if (modeCreatEdit = 'edit') {
+    } else if (modeCreatEdit == 'edit') {
         editTask(taskId);
         modeCreatEdit == 'default';
         inputCreating.value = '';
         textareaTask.value = '';
         creatingWindow.style.display = 'none';
     }
-
-
-
 })
 btnCompleted.addEventListener('click', () => {
     changeModeViewTask();

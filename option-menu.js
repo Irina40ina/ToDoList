@@ -1,8 +1,12 @@
+
 let screenX = 0;
 let screenY = 0;
 const optionMenu = document.querySelector('.option__menu');
 const optionMenuContainer = document.querySelector('.option__menu_container');
 const btnOptionMenuDone = document.getElementById('btn-option__menu__done');
+const btnOptionMenuDelete = document.getElementById('btn-option__menu__delete');
+const deleteFormContainer = document.querySelector('.delete_form_container');
+const deleteForm = document.querySelector('.delete_form');
 let taskId = null;
 
 function setPositionOptionMenu(id) {
@@ -38,6 +42,24 @@ document.addEventListener('keydown', (event) => {
 optionMenuContainer.addEventListener('click', () => {
     optionMenuContainer.style.display = 'none';
 });
+
+optionMenu.addEventListener('click', (event) => {
+    event.stopPropagation();
+})
+
 btnOptionMenuDone.addEventListener('click', () => {
     completeTask();
+})
+
+btnOptionMenuDelete.addEventListener('click', () => {
+    deleteFormContainer.style.display = 'flex';
+    optionMenuContainer.style.display = 'none';
+})
+
+deleteFormContainer.addEventListener('click', () => {
+    deleteFormContainer.style.display = 'none';
+})
+
+deleteForm.addEventListener('click', (event) => {
+    event.stopPropagation();
 })
