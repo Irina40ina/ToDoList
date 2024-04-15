@@ -2,14 +2,15 @@
 const creatingWindow = document.querySelector('.creating__window');
 const btnOpenCreating = document.getElementById('btn-creating');
 const creationWindowClose = document.querySelector('.creation__window_close');
-const inputCreating = document.querySelector('.input_tytle_of_task');
-const textareaTask = document.getElementById('task_description');
+let inputCreating = document.querySelector('.input_title_of_task');
+let textareaTask = document.getElementById('task_description');
 const btnCreatingSave = document.querySelector('.creating__window_save');
 const tasksContainer = document.querySelector('.tasks__container');
 const btnCompleted = document.querySelector('.btn-completed');
 let titleTask = '';
 let descriptionTask = '';
 let taskArray = [];
+let modeCreatEdit = 'default';
 let mode = 'process'; // completed
 
 
@@ -142,8 +143,22 @@ textareaTask.addEventListener('input', (event) => {
     descriptionTask = event.target.value;
 })
 btnCreatingSave.addEventListener('click', (event) => {
-    event.preventDefault();
-    creatingTask();
+    if (modeCreatEdit == 'default') {
+        event.preventDefault();
+        creatingTask();
+        inputCreating.value = '';
+        textareaTask.value = '';
+        creatingWindow.style.display = 'none';
+    } else if (modeCreatEdit = 'edit') {
+        editTask(taskId);
+        modeCreatEdit == 'default';
+        inputCreating.value = '';
+        textareaTask.value = '';
+        creatingWindow.style.display = 'none';
+    }
+
+
+
 })
 btnCompleted.addEventListener('click', () => {
     changeModeViewTask();

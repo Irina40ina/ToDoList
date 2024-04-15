@@ -225,7 +225,39 @@ h1 {
     z-index: 3;
 }
 
-.input_tytle_of_task {
+.header_creating__window {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end
+}
+
+.creation__window_close {
+    width: 24px;
+    cursor: pointer;
+    border: 0;
+}
+
+.main_creating__window {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.action_creating__window {
+    width: 27%;
+    height: 9%;
+    background-color: #D08805;
+}
+
+.creating__window_save {
+    width: 100%;
+    height: 100%;
+    background-color: #D08805;
+}
+
+.input_title_of_task {
     width: 80%;
     height: 10%;
     background-color: #E9B193;
