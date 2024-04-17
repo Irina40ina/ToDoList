@@ -17,10 +17,10 @@ function setPositionOptionMenu(id) {
     console.log(taskId);
 }
 
-function completeTask(){
+function completeTask() {
     let taskArray = JSON.parse(localStorage.getItem('tasks'));
     taskArray.forEach((element) => {
-        if(element.id === taskId){
+        if (element.id === taskId) {
             element.isComplete = true;
         }
     });
@@ -30,36 +30,58 @@ function completeTask(){
     completedTask.remove();
 }
 
-document.addEventListener("mousemove", (event) => {
-    screenX = event.pageX;
-    screenY = event.pageY;
-});
-document.addEventListener('keydown', (event) => {
-    if(event.key == 'Escape'){
+function returnTask() {
+    let taskArray = JSON.parse(localStorage.getItem('tasks'));
+    taskArray.forEach((element) => {
+        if (element.id === taskId) {
+            element.isComplete = false;
+        }
+        localStorage.setItem('tasks', JSON.stringify(taskArray));
+        updateTaskArray(taskArray);
+        let returnedTask = document.getElementById(`${taskId}`);
+        if(returnedTask){
+            returnedTask.remove();
+        }
+    })
+}
+
+    document.addEventListener("mousemove", (event) => {
+        screenX = event.pageX;
+        screenY = event.pageY;
+    })
+    document.addEventListener('keydown', (event) => {
+        if (event.key == 'Escape') {
+            optionMenuContainer.style.display = 'none';
+        }
+    })
+    optionMenuContainer.addEventListener('click', () => {
         optionMenuContainer.style.display = 'none';
-    }
-})
-optionMenuContainer.addEventListener('click', () => {
-    optionMenuContainer.style.display = 'none';
-});
+    });
 
-optionMenu.addEventListener('click', (event) => {
-    event.stopPropagation();
-})
+    optionMenu.addEventListener('click', (event) => {
+        event.stopPropagation();
+    })
 
-btnOptionMenuDone.addEventListener('click', () => {
-    completeTask();
-})
+    btnOptionMenuDone.addEventListener('click', () => {
+        if(mode === 'process'){
+            completeTask();
+            optionMenuContainer.style.display = 'none';
+        } else if (mode === 'completed') {
+            console.log('done')
+            returnTask();
+            optionMenuContainer.style.display = 'none';
+        }
+    })
 
-btnOptionMenuDelete.addEventListener('click', () => {
-    deleteFormContainer.style.display = 'flex';
-    optionMenuContainer.style.display = 'none';
-})
+    btnOptionMenuDelete.addEventListener('click', () => {
+        deleteFormContainer.style.display = 'flex';
+        optionMenuContainer.style.display = 'none';
+    })
 
-deleteFormContainer.addEventListener('click', () => {
-    deleteFormContainer.style.display = 'none';
-})
+    deleteFormContainer.addEventListener('click', () => {
+        deleteFormContainer.style.display = 'none';
+    })
 
-deleteForm.addEventListener('click', (event) => {
-    event.stopPropagation();
-})
+    deleteForm.addEventListener('click', (event) => {
+        event.stopPropagation();
+    })

@@ -112,9 +112,13 @@ function updateTaskArray(updatedArray) {
 
 function changeModeViewTask() {
     if (mode === 'process') {
+        btnOptionMenuDone.innerHTML = 'Вернуть';
+        btnCompleted.innerHTML = 'В работе';
         mode = 'completed';
     }
     else if (mode === 'completed') {
+        btnOptionMenuDone.innerHTML = 'Выполнить';
+        btnCompleted.innerHTML = 'Выполненные';
         mode = 'process';
     }
     removingTaskView(mode);
