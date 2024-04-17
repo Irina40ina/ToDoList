@@ -1,5 +1,7 @@
 // ====================================  DATA  ====================================
 const deleteConfirm = document.getElementById('delete_confirm');
+const deleteСancel = document.getElementById('delete_cancel');
+
 
 
 // ====================================  METHODS  ====================================
@@ -18,5 +20,9 @@ function deleteTask(id){
 // ====================================  MOUNTED  ====================================
 deleteConfirm.addEventListener('click', () => {
     deleteTask(taskId);
+    deleteFormContainer.style.display = 'none';
+})
+
+deleteСancel.addEventListener('click', () => {
     deleteFormContainer.style.display = 'none';
 })
